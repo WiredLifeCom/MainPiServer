@@ -16,6 +16,8 @@ public class DataController {
 		System.out.println("Hello handlePostData");
 
 		String json = req.body();
+		System.out.println(json);
+		
 		Data data = Data.fromJson(json);
 
 		File dataDir = new File(String.format("data/%s", data.getUser().getUsername()));
