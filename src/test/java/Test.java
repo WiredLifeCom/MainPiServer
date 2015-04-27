@@ -5,7 +5,7 @@ public class Test {
 		builder.append("{");
 		// builder.append("\"data\": {");
 		builder.append("\"user\":{");
-		builder.append("\"username\":\"TestUser4\",");
+		builder.append("\"username\":\"TestUser5\",");
 		builder.append("\"zones\":[");
 		builder.append("{");
 		builder.append("\"arrival\":\"2015-04-21T11:42:11.000+02:00\",");
@@ -30,7 +30,7 @@ public class Test {
 		// builder.append("}");
 		builder.append("}");
 
-		RequestPoster.doPost("http://localhost:12401/data", builder.toString());
+		RequestPoster.doPost("http://localhost:7070/data", builder.toString());
 	}
 
 }
