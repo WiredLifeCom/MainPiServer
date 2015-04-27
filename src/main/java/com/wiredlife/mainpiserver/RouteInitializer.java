@@ -18,7 +18,7 @@ public class RouteInitializer {
 	}
 
 	public static void main(String[] args) {
-		port(12401);
+		port(7070);
 
 		RouteInitializer initializer = new RouteInitializer();
 		initializer.createRoutes();
