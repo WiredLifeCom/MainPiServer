@@ -14,7 +14,7 @@ public class RouteInitializer {
 	}
 
 	public void createRoutes() {
-		post("/data", (req, res) -> this.dataController.handleDataPost(req, res));
+		post("/unload", (req, res) -> this.dataController.handleUnloadPost(req, res));
 	}
 
 	public static void main(String[] args) {

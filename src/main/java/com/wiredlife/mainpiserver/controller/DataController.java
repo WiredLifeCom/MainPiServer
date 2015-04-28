@@ -1,38 +1,25 @@
 package com.wiredlife.mainpiserver.controller;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import spark.Request;
 import spark.Response;
 
+import com.wiredlife.jsonformatjava.dba.SQLiteDBA;
 import com.wiredlife.jsonformatjava.model.Data;
 
 public class DataController {
 
-	public Response handleDataPost(Request req, Response res) throws IOException {
-		System.out.println("Hello handlePostData");
+	public Response handleUnloadPost(Request req, Response res) {
+		System.out.println("Hello handleUnloadPost");
 
 		String json = req.body();
 		System.out.println(json);
-		
+
 		Data data = Data.fromJson(json);
 
-		File dataDir = new File(String.format("data/%s", data.getUser().getUsername()));
-		dataDir.mkdirs();
+		SQLiteDBA dba = new SQLiteDBA("data/database.db");
+		dba.addUnload(data);
 
-		File jsonFile = new File(String.format("data/%s/%s.json", data.getUser().getUsername(), data.getUnload().toString().replace(":", "-")));
-
-		try (BufferedWriter output = new BufferedWriter(new FileWriter(jsonFile))) {
-			output.write(json);
-			output.close();
-		} catch (Exception e) {
-			res.status(500);
-			res.body(e.toString());
-			return res;
-		}
+		System.out.println(dba.getUnloads(data.getUser().getUsername()));
 
 		res.status(200);
 
