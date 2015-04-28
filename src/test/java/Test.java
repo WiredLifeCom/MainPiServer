@@ -5,7 +5,7 @@ public class Test {
 		builder.append("{");
 		// builder.append("\"data\": {");
 		builder.append("\"user\":{");
-		builder.append("\"username\":\"TestUser5\",");
+		builder.append("\"username\":\"bejbejpomp\",");
 		builder.append("\"zones\":[");
 		builder.append("{");
 		builder.append("\"arrival\":\"2015-04-25T11:42:11.000+02:00\",");
