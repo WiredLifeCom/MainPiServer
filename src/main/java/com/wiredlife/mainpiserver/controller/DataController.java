@@ -3,8 +3,8 @@ package com.wiredlife.mainpiserver.controller;
 import spark.Request;
 import spark.Response;
 
-import com.wiredlife.jsonformatjava.dba.SQLiteDBA;
-import com.wiredlife.jsonformatjava.model.Data;
+import com.wiredlife.jsonformatjava.dba.unload.UnloadDBA;
+import com.wiredlife.jsonformatjava.model.unload.Unload;
 
 public class DataController {
 
@@ -14,12 +14,10 @@ public class DataController {
 		String json = req.body();
 		System.out.println(json);
 
-		Data data = Data.fromJson(json);
+		Unload data = Unload.fromJson(json);
 
-		SQLiteDBA dba = new SQLiteDBA("data/database.db");
+		UnloadDBA dba = new UnloadDBA("data/database.db");
 		dba.addUnload(data);
-
-		System.out.println(dba.getUnloads(data.getUser().getUsername()));
 
 		res.status(200);
 
