@@ -3,6 +3,9 @@ package com.wiredlife.mainpiserver;
 import static spark.Spark.post;
 import static spark.SparkBase.port;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.wiredlife.mainpiserver.controller.DataController;
 
 public class RouteInitializer {
@@ -18,7 +21,16 @@ public class RouteInitializer {
 	}
 
 	public static void main(String[] args) {
-		port(7070);
+		List<String> argsList = Arrays.asList(args);
+
+		int port;
+		if (argsList.contains("-port")) {
+			port = Integer.parseInt(argsList.get(argsList.indexOf("-port") + 1));
+		} else {
+			port = 7070;
+		}
+
+		port(port);
 
 		RouteInitializer initializer = new RouteInitializer();
 		initializer.createRoutes();
