@@ -38,6 +38,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
+					<finalName>${project.artifactId}-${project.version}</finalName>
 					<archive>
 						<manifest>
 							<mainClass>com.wiredlife.mainpiserver.RouteInitializer</mainClass>
@@ -46,6 +47,7 @@
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
+					<appendAssemblyId>false</appendAssemblyId>
 				</configuration>
 				<executions>
 					<execution>
