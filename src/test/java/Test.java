@@ -18,13 +18,13 @@ public class Test {
 		builder.append("\"materials\":[");
 		builder.append("\"Dirt\",");
 		builder.append("\"Dirt\",");
-		builder.append("\"Stone\"");
+		builder.append("\"DiamondPickaxe\"");
 		builder.append("],");
 		builder.append("\"unload\":\"2015-04-21T13:04:54.000+02:00\"");
 		// builder.append("}");
 		builder.append("}");
 
-		RequestPoster.doPost("http://localhost:7070/unload", builder.toString());
+		RequestPoster.doPost("http://192.168.10.186:7070/unload", builder.toString());
 	}
 
 }
