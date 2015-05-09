@@ -6,14 +6,14 @@ import static spark.SparkBase.port;
 import java.util.Arrays;
 import java.util.List;
 
-import com.wiredlife.mainpiserver.controller.DataController;
+import com.wiredlife.mainpiserver.controller.UnloadController;
 
 public class RouteInitializer {
 
-	private DataController dataController;
+	private UnloadController dataController;
 
 	public RouteInitializer() {
-		this.dataController = new DataController();
+		this.dataController = new UnloadController();
 	}
 
 	public void createRoutes() {
