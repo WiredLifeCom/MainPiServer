@@ -1,5 +1,7 @@
 package com.wiredlife.mainpiserver.controller;
 
+import java.util.Map;
+
 import spark.Request;
 import spark.Response;
 
@@ -9,6 +11,12 @@ import com.wiredlife.mainpiserver.config.Config;
 
 public class UnloadController {
 
+	private Map<String, String> values;
+
+	public UnloadController() {
+		this.values = Config.getValues();
+	}
+
 	public Response handleUnloadPost(Request req, Response res) {
 		// System.out.println("Hello handleUnloadPost");
 
@@ -17,7 +25,7 @@ public class UnloadController {
 
 		Unload data = Unload.fromJson(json);
 
-		UnloadDBA dba = new UnloadDBA(Config.getDatabase());
+		UnloadDBA dba = new UnloadDBA(this.values.get("-database"));
 		dba.addUnload(data);
 
 		res.status(200);

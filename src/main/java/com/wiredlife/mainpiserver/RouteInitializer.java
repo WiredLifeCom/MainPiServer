@@ -3,8 +3,7 @@ package com.wiredlife.mainpiserver;
 import static spark.Spark.post;
 import static spark.SparkBase.port;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 import com.wiredlife.mainpiserver.config.Config;
 import com.wiredlife.mainpiserver.controller.UnloadController;
@@ -22,21 +21,15 @@ public class RouteInitializer {
 	}
 
 	public static void main(String[] args) {
-		List<String> argsList = Arrays.asList(args);
+		Map<String, String> values = Config.getValues();
 
-		if (argsList.contains("-port")) {
-			Config.setPort(Integer.parseInt(argsList.get(argsList.indexOf("-port") + 1)));
-		} else {
-			Config.setPort(7070);
+		for (int i = 0; i < args.length - 1; i++) {
+			if (i % 2 == 0) {
+				values.put(args[i], args[i + 1]);
+			}
 		}
 
-		if (argsList.contains("-database")) {
-			Config.setDatabase(argsList.get(argsList.indexOf("-database") + 1));
-		} else {
-			Config.setDatabase("database.sqlite");
-		}
-
-		port(Config.getPort());
+		port(Integer.valueOf(values.get("-port")));
 
 		RouteInitializer initializer = new RouteInitializer();
 		initializer.createRoutes();

@@ -1,24 +1,20 @@
 package com.wiredlife.mainpiserver.config;
 
-public class Config {
+import java.util.HashMap;
+import java.util.Map;
 
-	private static int port;
-	private static String database;
+public class Config<K, V> {
 
-	public static int getPort() {
-		return port;
+	private static Map<String, String> values;
+
+	static {
+		if (values == null) {
+			values = new HashMap<String, String>();
+		}
 	}
 
-	public static void setPort(int port) {
-		Config.port = port;
-	}
-
-	public static String getDatabase() {
-		return database;
-	}
-
-	public static void setDatabase(String database) {
-		Config.database = database;
+	public static Map<String, String> getValues() {
+		return values;
 	}
 
 }
