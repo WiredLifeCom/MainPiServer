@@ -11,14 +11,14 @@ import com.wiredlife.mainpiserver.controller.UnloadController;
 
 public class RouteInitializer {
 
-	private UnloadController dataController;
+	private UnloadController unloadController;
 
 	public RouteInitializer() {
-		this.dataController = new UnloadController();
+		this.unloadController = new UnloadController();
 	}
 
 	public void createRoutes() {
-		post("/unload", (req, res) -> this.dataController.handleUnloadPost(req, res));
+		post("/unload", (req, res) -> this.unloadController.handleUnloadPost(req, res));
 	}
 
 	public static void main(String[] args) {
