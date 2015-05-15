@@ -3,7 +3,7 @@ package com.wiredlife.mainpiserver.config;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Config<K, V> {
+public class Config {
 
 	private static Map<String, String> values;
 
