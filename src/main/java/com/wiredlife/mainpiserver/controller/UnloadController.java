@@ -5,7 +5,7 @@ import java.util.Map;
 import spark.Request;
 import spark.Response;
 
-import com.wiredlife.jsonformatjava.dba.unload.UnloadDBA;
+import com.wiredlife.jsonformatjava.dba.DBA;
 import com.wiredlife.jsonformatjava.model.unload.Unload;
 import com.wiredlife.mainpiserver.config.Config;
 
@@ -25,7 +25,7 @@ public class UnloadController {
 
 		Unload data = Unload.fromJson(json);
 
-		UnloadDBA dba = new UnloadDBA(this.values.get("-database"));
+		DBA dba = new DBA(this.values.get("-database"));
 		dba.addUnload(data);
 
 		res.status(200);
