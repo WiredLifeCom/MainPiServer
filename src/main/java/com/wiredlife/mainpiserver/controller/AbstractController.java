@@ -1,5 +1,7 @@
 package com.wiredlife.mainpiserver.controller;
 
+import java.beans.PropertyVetoException;
+import java.sql.SQLException;
 import java.util.Map;
 
 import com.wiredlife.jsonformatjava.dao.DAO;
@@ -9,12 +11,22 @@ public abstract class AbstractController {
 
 	protected Map<String, String> values;
 	protected DAO dba;
-	
+
 	protected AbstractController() {
 		System.out.println("Initialized AbstractController");
-		
+
 		this.values = Config.getValues();
-		this.dba = new DAO(this.values.get("-database"));
+		try {
+			this.dba = new DAO(this.values.get("-database"));
+		} catch (PropertyVetoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
 	}
-	
+
 }

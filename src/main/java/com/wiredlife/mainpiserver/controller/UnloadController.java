@@ -1,8 +1,11 @@
 package com.wiredlife.mainpiserver.controller;
 
+import java.sql.SQLException;
+
 import spark.Request;
 import spark.Response;
 
+import com.google.gson.JsonParseException;
 import com.wiredlife.jsonformatjava.model.unload.Unload;
 
 public class UnloadController extends AbstractController {
@@ -17,12 +20,22 @@ public class UnloadController extends AbstractController {
 		String json = request.body();
 		// System.out.println(json);
 
-		Unload unload = Unload.fromJson(json);
+		Unload unload;
+		try {
+			unload = Unload.fromJson(json);
+		} catch (JsonParseException e) {
+			response.status(422);
+			return response;
+		}
 
-		super.dba.addUnload(unload);
+		try {
+			super.dba.addUnload(unload);
+		} catch (SQLException e) {
+			response.status(400);
+			return response;
+		}
 
 		response.status(200);
-
 		return response;
 	}
 
