@@ -11,6 +11,8 @@ public abstract class AbstractController {
 	protected DBA dba;
 	
 	protected AbstractController() {
+		System.out.println("Initialized AbstractController");
+		
 		this.values = Config.getValues();
 		this.dba = new DBA(this.values.get("-database"));
 	}

@@ -12,7 +12,7 @@ import com.wiredlife.mainpiserver.config.Config;
 public class UnloadController extends AbstractController {
 
 	public UnloadController() {
-		
+		System.out.println("Initialized UnloadController");
 	}
 
 	public Response handleUnloadPost(Request request, Response response) {

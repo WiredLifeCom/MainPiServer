@@ -13,7 +13,7 @@ import com.wiredlife.mainpiserver.config.Config;
 public class StatusController extends AbstractController {
 	
 	public StatusController() {
-		
+		System.out.println("Initialized StatusController");
 	}
 	
 	public Response handleOnlineStatusPost(Request request, Response response) {
