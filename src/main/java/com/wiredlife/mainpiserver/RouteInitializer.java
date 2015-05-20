@@ -6,17 +6,21 @@ import static spark.SparkBase.port;
 import java.util.Map;
 
 import com.wiredlife.mainpiserver.config.Config;
+import com.wiredlife.mainpiserver.controller.StatusController;
 import com.wiredlife.mainpiserver.controller.UnloadController;
 
 public class RouteInitializer {
 
+	private StatusController statusController;
 	private UnloadController unloadController;
 
 	public RouteInitializer() {
+		this.statusController = new StatusController();
 		this.unloadController = new UnloadController();
 	}
 
 	public void createRoutes() {
+		post("/onlinestatus", (req, res) -> this.statusController.handleOnlineStatusPost(req, res));
 		post("/unload", (req, res) -> this.unloadController.handleUnloadPost(req, res));
 	}
 
