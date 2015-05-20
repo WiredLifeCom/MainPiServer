@@ -15,13 +15,15 @@ public class RequestPoster {
 		return result;
 	}
 
-	public static void doPost(String address, String query) {
+	public static String doPost(String address, String query) {
 		System.out.println("Query: " + query);
 
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(address);
 		Response response = target.request().post(Entity.json(query));
 		String result = response.readEntity(String.class);
+		
+		return result;
 	}
 
 }
