@@ -24,8 +24,7 @@ public class StatusController extends AbstractController {
 		
 		OnlineStatus onlineStatus = OnlineStatus.fromJson(json);
 
-		DBA dba = new DBA(super.values.get("-database"));
-		dba.addOnlineStatus(onlineStatus);
+		super.dba.addOnlineStatus(onlineStatus);
 
 		response.status(200);
 

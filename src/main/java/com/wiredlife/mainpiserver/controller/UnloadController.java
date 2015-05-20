@@ -23,8 +23,7 @@ public class UnloadController extends AbstractController {
 
 		Unload unload = Unload.fromJson(json);
 
-		DBA dba = new DBA(super.values.get("-database"));
-		dba.addUnload(unload);
+		super.dba.addUnload(unload);
 
 		response.status(200);
 
