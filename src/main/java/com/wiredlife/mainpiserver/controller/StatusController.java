@@ -1,27 +1,22 @@
 package com.wiredlife.mainpiserver.controller;
 
-import java.util.Map;
-
 import spark.Request;
 import spark.Response;
 
-import com.wiredlife.jsonformatjava.dba.DBA;
 import com.wiredlife.jsonformatjava.model.status.OnlineStatus;
-import com.wiredlife.jsonformatjava.model.unload.Unload;
-import com.wiredlife.mainpiserver.config.Config;
 
 public class StatusController extends AbstractController {
-	
+
 	public StatusController() {
 		System.out.println("Initialized StatusController");
 	}
-	
+
 	public Response handleOnlineStatusPost(Request request, Response response) {
 		// System.out.println("Hello handleOnlineStatusPost");
 
 		String json = request.body();
 		// System.out.println(json);
-		
+
 		OnlineStatus onlineStatus = OnlineStatus.fromJson(json);
 
 		super.dba.addOnlineStatus(onlineStatus);
@@ -30,5 +25,5 @@ public class StatusController extends AbstractController {
 
 		return response;
 	}
-	
+
 }
