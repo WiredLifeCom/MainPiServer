@@ -1,3 +1,5 @@
+import com.wiredlife.jsonformatjava.model.status.OnlineStatus;
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -28,7 +30,15 @@ public class Test {
 
 		System.out.println(builder.toString());
 
-		RequestPoster.doPost("http://localhost:7070/unload", builder.toString());
+		//RequestPoster.doPost("http://localhost:7070/unload", builder.toString());
+		//RequestPoster.doPost("http://localhost:7070/unload", builder.toString());
+		
+		OnlineStatus status = new OnlineStatus();
+		status.setUsername("hello");
+		status.setHome(false);
+		status.setIpAddress("1.2.3.4");
+		
+		RequestPoster.doPost("http://localhost:7070/onlinestatus", OnlineStatus.toJson(status));
 	}
 
 }
