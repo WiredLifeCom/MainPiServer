@@ -23,10 +23,10 @@ public class UnloadController {
 		String json = req.body();
 		// System.out.println(json);
 
-		Unload data = Unload.fromJson(json);
+		Unload unload = Unload.fromJson(json);
 
 		DBA dba = new DBA(this.values.get("-database"));
-		dba.addUnload(data);
+		dba.addUnload(unload);
 
 		res.status(200);
 
