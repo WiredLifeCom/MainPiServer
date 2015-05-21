@@ -1,3 +1,5 @@
+import java.util.Random;
+
 import org.joda.time.DateTime;
 
 import com.wiredlife.jsonformatjava.model.status.OnlineStatus;
@@ -35,7 +37,14 @@ public class Test {
 		//
 		// System.out.println(builder.toString());
 
-		for (int i = 0; i < 100; i++) {
+		int loops = 50;
+		for (int i = 0; i < loops; i++) {
+			System.out.println("Loops left: " + (loops - i));
+
+			Random random = new Random();
+
+			int randomNumber;
+
 			Unload unload = new Unload();
 
 			User user = new User();
@@ -44,12 +53,15 @@ public class Test {
 			unload.setUser(user);
 
 			Zone z1 = new Zone(55.5421, 21.4621, 20, "Dirt", 30);
-			z1.setArrival(DateTime.now());
-			z1.setDeparture(DateTime.now().plusHours(1));
 
+			randomNumber = random.nextInt(60);
+			z1.setArrival(DateTime.now().plusHours(randomNumber).plusMinutes(randomNumber).plusSeconds(randomNumber).plusMillis(randomNumber));
+			z1.setDeparture(z1.getArrival().plusHours(randomNumber).plusMinutes(randomNumber).plusSeconds(randomNumber).plusMillis(randomNumber));
+
+			randomNumber = random.nextInt(60);
 			Zone z2 = new Zone(52.5421, 23.4621, 30, "Wood", 50);
-			z2.setArrival(DateTime.now());
-			z2.setDeparture(DateTime.now().plusHours(1));
+			z2.setArrival(DateTime.now().plusHours(randomNumber).plusMinutes(randomNumber).plusSeconds(randomNumber).plusMillis(randomNumber));
+			z2.setDeparture(z1.getArrival().plusHours(randomNumber).plusMinutes(randomNumber).plusSeconds(randomNumber).plusMillis(randomNumber));
 
 			unload.addZone(z1);
 			unload.addZone(z2);
@@ -73,12 +85,12 @@ public class Test {
 			status.setIpAddress("1.2.3.4");
 
 			RequestPoster.doPost("http://localhost:7070/onlinestatus", OnlineStatus.toJson(status));
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			// try {
+			// Thread.sleep(50);
+			// } catch (InterruptedException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
 		}
 	}
 }
