@@ -24,6 +24,7 @@ public class StatusController extends AbstractController {
 		try {
 			onlineStatus = OnlineStatus.fromJson(json);
 		} catch (JsonParseException e) {
+			e.printStackTrace();
 			response.status(422);
 			return response;
 		}
@@ -31,6 +32,7 @@ public class StatusController extends AbstractController {
 		try {
 			super.dba.addOnlineStatus(onlineStatus);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			response.status(500);
 			return response;
 		}

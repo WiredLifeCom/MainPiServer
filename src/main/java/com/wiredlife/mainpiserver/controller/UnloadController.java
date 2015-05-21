@@ -24,6 +24,7 @@ public class UnloadController extends AbstractController {
 		try {
 			unload = Unload.fromJson(json);
 		} catch (JsonParseException e) {
+			e.printStackTrace();
 			response.status(422);
 			return response;
 		}
@@ -31,6 +32,7 @@ public class UnloadController extends AbstractController {
 		try {
 			super.dba.addUnload(unload);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			response.status(500);
 			return response;
 		}
