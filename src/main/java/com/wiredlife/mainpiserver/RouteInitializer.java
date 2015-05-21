@@ -19,7 +19,7 @@ public class RouteInitializer {
 		this.unloadController = new UnloadController();
 	}
 
-	public void createRoutes() {
+	private void createRoutes() {
 		post("/onlinestatus", (req, res) -> this.statusController.handleOnlineStatusPost(req, res));
 		post("/unload", (req, res) -> this.unloadController.handleUnloadPost(req, res));
 	}
