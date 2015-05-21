@@ -31,7 +31,7 @@ public class StatusController extends AbstractController {
 		try {
 			super.dba.addOnlineStatus(onlineStatus);
 		} catch (SQLException e) {
-			response.status(400);
+			response.status(500);
 			return response;
 		}
 

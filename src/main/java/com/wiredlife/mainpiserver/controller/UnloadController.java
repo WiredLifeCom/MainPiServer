@@ -31,7 +31,7 @@ public class UnloadController extends AbstractController {
 		try {
 			super.dba.addUnload(unload);
 		} catch (SQLException e) {
-			response.status(400);
+			response.status(500);
 			return response;
 		}
 
