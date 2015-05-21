@@ -15,10 +15,10 @@ public class UnloadController extends AbstractController {
 	}
 
 	public Response handleUnloadPost(Request request, Response response) {
-		// System.out.println("Hello handleUnloadPost");
+		System.out.println("Hello handleUnloadPost");
 
 		String json = request.body();
-		// System.out.println(json);
+		System.out.println(json);
 
 		Unload unload;
 		try {

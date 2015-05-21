@@ -15,10 +15,10 @@ public class StatusController extends AbstractController {
 	}
 
 	public Response handleOnlineStatusPost(Request request, Response response) {
-		// System.out.println("Hello handleOnlineStatusPost");
+		System.out.println("Hello handleOnlineStatusPost");
 
 		String json = request.body();
-		// System.out.println(json);
+		System.out.println(json);
 
 		OnlineStatus onlineStatus;
 		try {
