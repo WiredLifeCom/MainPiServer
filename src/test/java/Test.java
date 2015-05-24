@@ -53,15 +53,14 @@ public class Test {
 			unload.setUser(user);
 
 			Zone z1 = new Zone(55.5421, 21.4621, 20, "Dirt", 30);
-
 			randomNumber = random.nextInt(60);
 			z1.setArrival(DateTime.now().plusHours(randomNumber).plusMinutes(randomNumber).plusSeconds(randomNumber).plusMillis(randomNumber));
 			z1.setDeparture(z1.getArrival().plusHours(randomNumber).plusMinutes(randomNumber).plusSeconds(randomNumber).plusMillis(randomNumber));
 
-			randomNumber = random.nextInt(60);
 			Zone z2 = new Zone(52.5421, 23.4621, 30, "Wood", 50);
+			randomNumber = random.nextInt(60);
 			z2.setArrival(DateTime.now().plusHours(randomNumber).plusMinutes(randomNumber).plusSeconds(randomNumber).plusMillis(randomNumber));
-			z2.setDeparture(z1.getArrival().plusHours(randomNumber).plusMinutes(randomNumber).plusSeconds(randomNumber).plusMillis(randomNumber));
+			z2.setDeparture(z2.getArrival().plusHours(randomNumber).plusMinutes(randomNumber).plusSeconds(randomNumber).plusMillis(randomNumber));
 
 			unload.addZone(z1);
 			unload.addZone(z2);
@@ -77,20 +76,22 @@ public class Test {
 
 			unload.setUnload(DateTime.now().plusHours(1).plusMinutes(30));
 
-			RequestPoster.doPost("http://localhost:7070/unload", Unload.toJson(unload));
+			RequestPoster.doPost("http://192.168.10.148:7070/unload", Unload.toJson(unload));
 
-			OnlineStatus status = new OnlineStatus();
-			status.setUsername("hello");
-			status.setHome(false);
-			status.setIpAddress("1.2.3.4");
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-			RequestPoster.doPost("http://localhost:7070/onlinestatus", OnlineStatus.toJson(status));
-			// try {
-			// Thread.sleep(50);
-			// } catch (InterruptedException e) {
-			// // TODO Auto-generated catch block
-			// e.printStackTrace();
-			// }
 		}
+		OnlineStatus status = new OnlineStatus();
+		status.setUsername("bejbejpomp");
+		status.setHome(true);
+		status.setIpAddress("1.2.3.4");
+
+		RequestPoster.doPost("http://192.168.10.148:7070/onlinestatus", OnlineStatus.toJson(status));
+
 	}
 }
