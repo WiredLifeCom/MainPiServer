@@ -33,7 +33,11 @@ public class RouteInitializer {
 			}
 		}
 
-		port(Integer.valueOf(values.get("-port")));
+		if (values.containsKey("-port")) {
+			port(Integer.valueOf(values.get("-port")));
+		} else {
+			port(7070);
+		}
 
 		RouteInitializer initializer = new RouteInitializer();
 		initializer.createRoutes();
