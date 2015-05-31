@@ -19,11 +19,9 @@ public abstract class AbstractController {
 		try {
 			this.dba = new DAO(this.values.get("-database"));
 		} catch (PropertyVetoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return;
 		}
